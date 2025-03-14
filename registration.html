@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <title>Workshop Registration</title>
+    <style>
+body {
+font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('develop.jpg');
+    background-size: cover;
+    background-position: center;
+    font-size: 25px;
+    color: white; /* Make all text white */
+    font-family: 'Raleway', sans-serif;
+
+}
+
+
+
+
+/* Navigation Bar */
+.navbar {
+display: flex;
+   position: fixed;
+    top: 0;
+    width: 95%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: rgba(0, 0, 0, 0.7);
+ z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff9800;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff9800;
+}
+
+
+.container {
+    position: relative;
+    z-index: 1; /* Puts content above the overlay */
+    border: 2px solid white; /* Keeps the border only */
+  background: rgba(255, 255, 255, 0.1);    max-width: 50%;
+    margin:150px auto 50px; /* Keeps it centered but allows scrolling */
+    padding: 50px;
+    color: white;
+backdrop-filter: blur(10px);
+/* Title */
+.title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ff9800;
+}
+
+/* Progress Bar */
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    counter-reset: step;
+}
+
+.step {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: #555;
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.step.active {
+    background: #ff9800;
+}
+}      
+	  h2 {
+            text-align: center;
+		font-family: Raleway;
+        }
+
+
+        .error {
+            border: 2px solid red !important;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background: #6a11cb;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+		font-family: Raleway;
+        }
+
+        button:hover {
+            background: #2575fc;
+        }
+
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+.terms-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.terms-container input[type="checkbox"] {
+    margin: 0;
+    width: 16px;
+    height: 16px;
+}
+
+.terms-container label {
+    margin-left: 5px;
+    font-size: 14px;
+    cursor: pointer;
+	font-family: Raleway;
+}
+
+/* 🌟 Input Group Styling */
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+/* 🌟 Icons Styling */
+.input-group i {
+    position: absolute;
+    left: 10px;
+    top: 40%;
+    transform: translateY(-50%);
+    color: #6a11cb;
+    font-size: 16px;
+	
+}
+
+/* 🌟 Input Fields */
+input[type=text]{
+    width: 85%;
+height: 30px;
+    padding: 10px 40px;
+    border-radius: 5px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #a2a2a2;
+font-family: Raleway;
+}
+input[type=date]{
+    width: 85%;
+height: 30px;
+    padding: 10px 40px;
+    border-radius: 5px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #a2a2a2;
+font-family: Raleway;
+}
+input[type=email]{
+    width: 85%;
+height: 30px;
+    padding: 10px 40px;
+    border-radius: 5px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #a2a2a2;
+font-family: Raleway;
+}
+
+/* 🌟 Focus Effect */
+.input-group input:focus {
+    border: 2px solid #6a11cb;
+    outline: none;
+}
+/* Smooth Button Hover */
+button {
+    transition: background 0.3s ease, transform 0.2s ease;
+font-family: Raleway;
+}
+button:hover {
+    background: #2575fc;
+    transform: scale(1.1);
+}
+
+/* Input Field Glow */
+input, textarea {
+    transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Checkbox Smooth Animation */
+.terms-container input[type="checkbox"] {
+    transition: all 0.2s ease-in-out;
+}
+
+.terms-container input[type="checkbox"]:checked {
+    transform: scale(1.2);
+}
+.custom-select {
+    position: relative;
+    width: 96%;
+font-family: Raleway;
+    
+}
+
+.custom-select i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4A90E2; /* Icon color */
+    font-size: 18px;
+    z-index: 10;
+}
+
+/* Styled select dropdown */
+.custom-select select {
+    width: 100%;
+    padding: 12px 45px; /* Adjusted padding for icon */
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #1c1c1c;
+    color: white;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Custom dropdown arrow */
+.custom-select::after {
+    content: "\25BC"; /* Unicode for down arrow */
+    font-size: 14px;
+    color: white;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Style dropdown options */
+.custom-select select option {
+    background: #1c1c1c;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+}
+
+/* Hover & focus effects */
+.custom-select select:hover {
+    border-color: #4A90E2;
+}
+
+.custom-select select:focus {
+    border-color: #4A90E2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+#multiStepForm {
+font-family: Raleway; }
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Footer */
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 50px;
+   font-size: 25px;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        margin: 100px auto 60px; /* Adjusted to prevent footer overlap */
+        width: 90%;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar ul li {
+        margin: 10px 0;
+    }
+}
+</style>
+</head>
+<body> 
+
+  <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">Workshop Registration</div>
+        <ul class="nav-links">
+            <li><a href="startup.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+    </nav>
+
+<div class="container">
+ <div class="title">Register for the Workshop</div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="step active">1</div>
+            <div class="step">2</div>
+            <div class="step">3</div>
+        </div>
+
+<form id="multiStepForm" action="https://formsubmit.co/jadelstech@gmail.com" method="POST" onsubmit="sendConfirmationEmail(event)">
+    <input type="hidden" name="_next" value="confirmn.html">
+    <input type="hidden" name="_captcha" value="false">
+        <!-- Step 1: Personal Information -->
+        <div class="form-step active">
+            <h2>Personal Information</h2>
+<hr><br>
+           <!-- Full Name -->            <label>Full Name:</label>
+
+<div class="input-group">
+    <i class="fa fa-user"></i>
+    <input type="text" id="firstName" placeholder="First Name" required>
+</div>
+
+<div class="input-group">
+    <i class="fa fa-user"></i>
+    <input type="text" id="middleName" placeholder="Middle Name (Optional)">
+</div>
+
+<div class="input-group">
+    <i class="fa fa-user"></i>
+    <input type="text" id="lastName" placeholder="Last Name" required>
+</div>
+
+<!-- Date of Birth -->    <label>Date of Birth:</label>
+
+<div class="input-group">
+    <i class="fa fa-calendar"></i>
+    <input type="date" id="dob" required>
+</div>
+
+<!-- Gender -->            <label>Gender:</label>
+
+<div class="custom-select">
+    <i class="fa fa-venus-mars"></i>
+    <select id="gender" required>
+        <option value="" disabled selected>--Select your gender--</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+</div>
+<br>
+<!-- Nationality -->            <label>Nationality:</label>
+
+<div class="input-group">
+    <i class="fa fa-globe"></i>
+    <input type="text" id="nationality" placeholder="eg. Ghanaian, Nigerian, etc." required>
+</div>
+
+<!-- Email -->            <label>Personal Email Address:</label>
+
+<div class="input-group">
+    <i class="fa fa-envelope"></i>
+    <input type="email" id="email" placeholder="example@domain.com" required>
+</div>
+
+<!-- Phone Number -->            <label>Personal Phone Number:</label>
+
+<div class="input-group">
+    <i class="fa fa-phone"></i>
+    <input type="text" id="phone" placeholder="Enter a valid 10-15 digit phone number" required>
+</div>
+
+<!-- Residential Address --><label>Residential Address:</label>
+
+<div class="input-group">
+    <i class="fa fa-map-marker-alt"></i>
+    <input type="text" id="location" placeholder="Hostel Name or Off-Campus Location" required>
+</div>
+
+<!-- Social Media Links -->            <label>Social Media Links (Optional):</label>
+
+<div class="input-group">
+    <i class="fa fa-link"></i>
+    <input type="text" placeholder="Enter your social media link (Optional)">
+</div>
+
+
+
+           
+            <div class="btn-container">
+                <button type="button" class="next">Next</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Academic Details -->
+        <div class="form-step">
+<h2>Academic Details</h2>
+
+<!-- Student ID -->            <label>Student ID:</label>
+
+<div class="input-group">
+    <i class="fa fa-id-badge"></i>
+    <input type="text" placeholder="eg. 21342803" required>
+</div>
+
+<!-- Academic Department -->            <label>Academic Department:</label>
+<div class="custom-select">
+    <i class="fa fa-building"></i>
+    <select id="department" required>
+        <option value="" disabled selected>--Select your Department--</option>
+        <option value="College of Agriculture and Natural Resources">College of Agriculture and Natural Resources</option>
+        <option value="College of Art and Built Environment">College of Art and Built Environment</option>
+        <option value="College of Humanities and Social Sciences">College of Humanities and Social Sciences</option>
+        <option value="College of Engineering">College of Engineering</option>
+        <option value="College of Health Sciences">College of Health Sciences</option>
+        <option value="College of Science">College of Science</option>
+    </select>
+</div>
+<br>
+<!-- Field of Study -->            <label>Field of Study:</label>
+
+<div class="input-group">
+    <i class="fa fa-book"></i>
+    <input type="text" placeholder="eg. Computer Science, Chemical Engineering, etc." required>
+</div>
+
+<!-- Current Level -->            <label>Current Level:</label>
+
+<div class="custom-select">
+    <i class="fa fa-graduation-cap"></i>
+    <select id="level" required>
+        <option value="" disabled selected>--Select your Current Level--</option>
+        <option value="100">100</option>
+        <option value="200">200</option>
+        <option value="300">300</option>
+        <option value="400">400</option>
+        <option value="500">500</option>
+        <option value="600">600</option>
+    </select>
+</div>
+<br>
+<!-- Anticipated Graduation Date -->            <label>Anticipated Graduation Date:</label>
+
+<div class="input-group">
+    <i class="fa fa-calendar-check"></i>
+    <input type="date">
+</div>
+
+<!-- CWA -->            <label>CWA</label>
+
+<div class="input-group">
+    <i class="fa fa-chart-line"></i>
+    <input type="text" placeholder="Optional">
+</div>
+
+<div class="btn-container">
+    <button type="button" class="prev">Back</button>
+    <button type="button" class="next">Next</button>
+</div>
+
+                  </div>
+
+        <!-- Step 3: Workshop Selection -->
+        <div class="form-step">
+<h2>Workshop Information</h2>
+
+<!-- Workshop Choice -->            <label>Workshop Choice:</label>
+
+<div class="custom-select">
+    <i class="fa fa-tools"></i>
+    <select id="workshop" required>
+        <option value="" disabled selected>--Select a Workshop--</option>
+        <option value="Web Development">Web Development</option>
+        <option value="Graphic Design">Graphic Design</option>
+        <option value="Marketing Strategies">Marketing Strategies</option>
+        <option value="Digital Marketing">Digital Marketing</option>
+        <option value="Photography">Photography</option>
+        <option value="Robotics">Robotics</option>
+        <option value="Data Science">Data Science</option>
+    </select>
+</div>
+<br>
+<!-- Availability -->             <label>Availability for Workshops</label>
+
+<div class="custom-select">
+    <i class="fa fa-calendar-alt"></i>
+    <select id="availability" required>
+        <option value="" disabled selected>--Select an Option--</option>
+        <option value="Weekdays">Weekdays</option>
+        <option value="Weekends">Weekends</option>
+    </select>
+</div>
+<br>
+<!-- Workshop Location -->            <label>Workshop Location:</label>
+
+<div class="custom-select">
+    <i class="fa fa-map-marker-alt"></i>
+    <select id="location" required>
+        <option value="" disabled selected>--Select--</option>
+        <option value="Online">Online</option>
+        <option value="Onsite">Onsite</option>
+    </select>
+</div>
+<br>
+<!-- Terms and Conditions -->
+<div class="terms-container">
+    <input type="checkbox" id="termsCheckbox" required>
+    <label for="termsCheckbox">
+        By registering, you agree to our <a href="terms.html" target="_blank">Terms & Conditions</a>.
+    </label>
+</div>
+<span id="termsError" style="color: red; display: none;">You must agree before submitting.</span>
+
+<br>
+<div class="btn-container">
+    <button type="button" class="prev">Back</button>
+    <button type="submit">Submit</button>
+</div>
+</div>
+
+    </form>
+</div>
+<!-- Footer -->
+    <footer>
+                          <p style="font-size: 25px"> &copy; 2025 Skillforg. All Rights Reserved.</p>
+    </footer>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Initialize EmailJS
+    emailjs.init("mRkmngSQa0dzBfRS8"); // Replace with your EmailJS Public Key
+
+    const steps = document.querySelectorAll(".form-step");
+    const progressSteps = document.querySelectorAll(".progress-bar .step");
+    const nextButtons = document.querySelectorAll(".next");
+    const prevButtons = document.querySelectorAll(".prev");
+    const submitButton = document.querySelector('button[type="submit"]');
+    const termsCheckbox = document.getElementById("termsCheckbox");
+    const form = document.getElementById("multiStepForm");
+    const dobInput = document.getElementById("dob");
+
+    let currentStep = 0;
+
+    // Function to update progress bar
+    function updateProgress() {
+        progressSteps.forEach((step, index) => {
+            step.classList.toggle("active", index <= currentStep);
+        });
+    }
+
+    // Function to validate required fields
+    function validateStep(stepIndex) {
+        const inputs = steps[stepIndex].querySelectorAll("input[required], select[required]");
+        let isValid = true;
+
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                input.classList.add("error");
+                isValid = false;
+            } else {
+                input.classList.remove("error");
+            }
+        });
+
+        return isValid;
+    }
+
+    // Function to validate Date of Birth
+    function validateDOB() {
+        const dobValue = new Date(dobInput.value);
+        const today = new Date();
+
+        if (dobValue > today) {
+            alert("Date of Birth cannot be in the future!");
+            dobInput.value = "";
+            return false;
+        }
+        return true;
+    }
+
+    // Function to scroll to top smoothly
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Next Button Event
+    nextButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            if (!validateStep(currentStep)) return;
+
+            if (dobInput && currentStep === 0 && !validateDOB()) return;
+
+            steps[currentStep].classList.remove("active");
+            currentStep++;
+            steps[currentStep].classList.add("active");
+            updateProgress();
+            scrollToTop();
+        });
+    });
+
+    // Previous Button Event
+    prevButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            steps[currentStep].classList.remove("active");
+            currentStep--;
+            steps[currentStep].classList.add("active");
+            updateProgress();
+            scrollToTop();
+        });
+    });
+
+document.getElementById("multiStepForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevents default submission to handle both EmailJS & FormSubmit
+
+    if (!validateStep(currentStep)) {
+        alert("Please fill in all required fields before submitting.");
+        return;
+    }
+
+    if (!document.getElementById("termsCheckbox").checked) {
+        alert("You must agree to the Terms & Conditions before submitting.");
+        return;
+    }
+
+    // Get user input values
+    let userName = document.getElementById("firstName").value + " " + document.getElementById("lastName").value;
+    let userEmail = document.getElementById("email").value;
+
+    // Send email via EmailJS
+    emailjs.send("service_cd8p711", "template_eg12xwg", {
+        user_name: userName,
+        user_email: userEmail
+    }, "mRkmngSQa0dzBfRS8")
+    .then(() => {
+        // Once email is sent, proceed with form submission
+        document.getElementById("multiStepForm").submit();
+    })
+    .catch((error) => {
+        console.error("EmailJS Error:", error);
+        alert("Error sending confirmation email. Please try again.");
+    });
+});
+    // Handle Form Submission
+    form.addEventListener("submit", function (event) {
+        event.preventDefault(); // Stop default form submission
+
+        if (!validateStep(currentStep)) {
+            alert("Please fill in all required fields before submitting.");
+            return;
+        }
+
+        if (!termsCheckbox.checked) {
+            alert("You must agree to the Terms & Conditions before submitting.");
+            return;
+        }
+
+        // Collect name & email
+        let userName = document.getElementById("firstName").value.trim();
+        let userEmail = document.getElementById("email").value.trim();
+
+        // Ensure both are filled before sending email
+        if (userName && userEmail) {
+            sendConfirmationEmail(userName, userEmail);
+        } else {
+            alert("Please fill in all required fields before submitting.");
+        }
+    });
+
+    // Auto-scroll to top on refresh
+    scrollToTop();
+    updateProgress();
+});
+
+</script>
+
+</body>
+</html>
