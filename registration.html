@@ -367,8 +367,8 @@ body {
             <div class="step">3</div>
         </div>
 
-<form action="https://formsubmit.co/jadelstech@gmail.com" method="POST">
-    <input type="hidden" name="_next" value="confirmn.html">
+<form id="multiStepForm" action="https://formsubmit.co/jadelstech@gmail.com" method="POST" onsubmit="sendConfirmationEmail(event)">
+      <input type="hidden" name="_next" value="confirmn.html">
     <input type="hidden" name="_captcha" value="false">
         <!-- Step 1: Personal Information -->
         <div class="form-step active">
@@ -378,31 +378,31 @@ body {
 
 <div class="input-group">
     <i class="fa fa-user"></i>
-    <input type="text" id="firstName" placeholder="First Name" required>
+    <input type="text"name="first_name" id="firstName" placeholder="First Name" required>
 </div>
 
 <div class="input-group">
     <i class="fa fa-user"></i>
-    <input type="text" id="middleName" placeholder="Middle Name (Optional)">
+    <input type="text"name="middle_name" id="middleName" placeholder="Middle Name (Optional)">
 </div>
 
 <div class="input-group">
     <i class="fa fa-user"></i>
-    <input type="text" id="lastName" placeholder="Last Name" required>
+    <input type="text"name="last_name" id="lastName" placeholder="Last Name" required>
 </div>
 
 <!-- Date of Birth -->    <label>Date of Birth:</label>
 
 <div class="input-group">
     <i class="fa fa-calendar"></i>
-    <input type="date" id="dob" required>
+    <input type="date"name="dob" id="dob" required>
 </div>
 
 <!-- Gender -->            <label>Gender:</label>
 
 <div class="custom-select">
     <i class="fa fa-venus-mars"></i>
-    <select id="gender" required>
+    <select name="gender" id="gender" required>
         <option value="" disabled selected>--Select your gender--</option>
         <option value="Male">Male</option>
         <option value="Female">Female</option>
@@ -413,7 +413,7 @@ body {
 
 <div class="input-group">
     <i class="fa fa-globe"></i>
-    <input type="text" id="nationality" placeholder="eg. Ghanaian, Nigerian, etc." required>
+    <input type="text" name="nationality" id="nationality" placeholder="eg. Ghanaian, Nigerian, etc." required>
 </div>
 
 <!-- Email -->            <label>Personal Email Address:</label>
@@ -427,21 +427,21 @@ body {
 
 <div class="input-group">
     <i class="fa fa-phone"></i>
-    <input type="text" id="phone" placeholder="Enter a valid 10-15 digit phone number" required>
+    <input type="text"name="phone" id="phone" placeholder="Enter a valid 10-15 digit phone number" required>
 </div>
 
 <!-- Residential Address --><label>Residential Address:</label>
 
 <div class="input-group">
     <i class="fa fa-map-marker-alt"></i>
-    <input type="text" id="location" placeholder="Hostel Name or Off-Campus Location" required>
+    <input type="text" name="location" id="location" placeholder="Hostel Name or Off-Campus Location" required>
 </div>
 
 <!-- Social Media Links -->            <label>Social Media Links (Optional):</label>
 
 <div class="input-group">
     <i class="fa fa-link"></i>
-    <input type="text" placeholder="Enter your social media link (Optional)">
+    <input type="text" name="social_media" placeholder="Enter your social media link (Optional)">
 </div>
 
 
@@ -460,13 +460,13 @@ body {
 
 <div class="input-group">
     <i class="fa fa-id-badge"></i>
-    <input type="text" placeholder="eg. 21342803" required>
+    <input type="text" name="student_id" placeholder="eg. 21342803" required>
 </div>
 
 <!-- Academic Department -->            <label>Academic Department:</label>
 <div class="custom-select">
     <i class="fa fa-building"></i>
-    <select id="department" required>
+    <select name="department" id="department" required>
         <option value="" disabled selected>--Select your Department--</option>
         <option value="College of Agriculture and Natural Resources">College of Agriculture and Natural Resources</option>
         <option value="College of Art and Built Environment">College of Art and Built Environment</option>
@@ -481,14 +481,14 @@ body {
 
 <div class="input-group">
     <i class="fa fa-book"></i>
-    <input type="text" placeholder="eg. Computer Science, Chemical Engineering, etc." required>
+    <input type="text" name="field_of_study" placeholder="eg. Computer Science, Chemical Engineering, etc." required>
 </div>
 
 <!-- Current Level -->            <label>Current Level:</label>
 
 <div class="custom-select">
     <i class="fa fa-graduation-cap"></i>
-    <select id="level" required>
+    <select id="level" name="current_level" required>
         <option value="" disabled selected>--Select your Current Level--</option>
         <option value="100">100</option>
         <option value="200">200</option>
@@ -503,14 +503,14 @@ body {
 
 <div class="input-group">
     <i class="fa fa-calendar-check"></i>
-    <input type="date">
+    <input type="date" name="graduation_date">
 </div>
 
 <!-- CWA -->            <label>CWA</label>
 
 <div class="input-group">
     <i class="fa fa-chart-line"></i>
-    <input type="text" placeholder="Optional">
+    <input type="text" name="cwa" placeholder="Optional">
 </div>
 
 <div class="btn-container">
@@ -528,7 +528,7 @@ body {
 
 <div class="custom-select">
     <i class="fa fa-tools"></i>
-    <select id="workshop" required>
+    <select name="workshop" id="workshop" required>
         <option value="" disabled selected>--Select a Workshop--</option>
         <option value="Web Development">Web Development</option>
         <option value="Graphic Design">Graphic Design</option>
@@ -544,7 +544,7 @@ body {
 
 <div class="custom-select">
     <i class="fa fa-calendar-alt"></i>
-    <select id="availability" required>
+    <select name="availability" id="availability" required>
         <option value="" disabled selected>--Select an Option--</option>
         <option value="Weekdays">Weekdays</option>
         <option value="Weekends">Weekends</option>
@@ -555,7 +555,7 @@ body {
 
 <div class="custom-select">
     <i class="fa fa-map-marker-alt"></i>
-    <select id="location" required>
+    <select name="workshop_location" id="location" required>
         <option value="" disabled selected>--Select--</option>
         <option value="Online">Online</option>
         <option value="Onsite">Onsite</option>
@@ -564,7 +564,7 @@ body {
 <br>
 <!-- Terms and Conditions -->
 <div class="terms-container">
-    <input type="checkbox" id="termsCheckbox" required>
+    <input type="checkbox" name="terms" id="termsCheckbox" required>
     <label for="termsCheckbox">
         By registering, you agree to our <a href="terms.html" target="_blank">Terms & Conditions</a>.
     </label>
