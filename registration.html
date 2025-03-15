@@ -337,79 +337,62 @@ body {
 
 
 
-/* Responsive */
 @media (max-width: 768px) {
-  /* Reduce container width, adjust margin and padding */
+  /* Make the container cover most of the phone screen */
   .container {
-    width: 95%;
-    margin: 80px auto 40px;
-    padding: 20px;
+    width: 95%;             /* Nearly full width */
+    margin: 20px auto;      /* Reduced margin for mobile */
+    padding: 20px;          /* Reduced padding for mobile */
   }
   
-  /* Lower base font-size for better readability */
-  body {
-    font-size: 18px;
-  }
-  
-  /* Adjust headings */
-  h2 {
-    font-size: 1.8em;
-  }
-  
-  /* Navigation Bar adjustments */
+  /* Keep the navbar horizontal on mobile */
   .navbar {
-    flex-direction: column;
+    flex-direction: row;    /* Force horizontal layout */
     padding: 10px 20px;
   }
-  .navbar ul {
-    flex-direction: column;
+  
+  .navbar .nav-links {
+    flex-direction: row;    /* Ensure links stay in a row */
+    justify-content: space-around;
     width: 100%;
-    text-align: center;
-  }
-  .navbar ul li {
-    margin: 5px 0;
   }
   
-  /* Inputs and select elements: make them full width */
-  input[type=text],
-  input[type=date],
-  input[type=email],
+  .navbar .nav-links li {
+    margin: 0 10px;
+  }
+  
+  /* Improve the look of input fields */
+  input[type="text"],
+  input[type="date"],
+  input[type="email"],
   select,
   textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0 15px 0;
-    font-size: 16px;
+    width: 100%;            /* Full width within the container */
+    padding: 10px 15px;      /* Adjusted padding */
+    margin: 5px 0 15px 0;    /* Reduced margin */
+    font-size: 16px;        /* Slightly smaller font size for mobile */
   }
   
-  /* Custom select wrapper */
-  .custom-select {
-    width: 100%;
-  }
-  
-  /* Buttons: full width and slightly larger text */
+  /* Button adjustments for better touch experience */
   button {
     width: 100%;
     padding: 12px;
     font-size: 18px;
   }
   
-  /* Progress Bar adjustments */
+  /* Progress Bar Adjustments */
   .progress-bar {
     margin-bottom: 15px;
   }
+  
   .step {
     width: 25px;
     height: 25px;
     line-height: 25px;
     font-size: 14px;
   }
-  
-  /* Footer font size */
-  .footer {
-    font-size: 18px;
-  }
 }
+
 
 </style>
 </head>
@@ -654,9 +637,9 @@ body {
 <footer class="footer">
     <p>&copy; 2025 SkillForge. All Rights Reserved.</p>
     <p>
-        <a href="privacy-policy.html">Privacy Policy</a> | 
-        <a href="terms.html">Terms of Use</a> |  
-        <a href="contact.html">Contact Us</a>
+        <a href="https://jvo-james.github.io/skillforg-website/privacy.html">Privacy Policy</a> | 
+        <a href="https://jvo-james.github.io/skillforg-website/terms.html">Terms of Use</a>   
+       
     </p>
 </footer>
 
