@@ -13,7 +13,7 @@ body {
 font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('strategy4.jpg');
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('robot4.jpg');
     background-size: cover;
     background-position: center;
     font-size: 25px;
@@ -609,23 +609,27 @@ body {
         });
     }
 
-    // Function to validate required fields
-    function validateStep(stepIndex) {
-        const inputs = steps[stepIndex].querySelectorAll("input[required], select[required]");
-        let isValid = true;
+   // Function to validate required fields and alert if any are missing
+function validateStep(stepIndex) {
+    const inputs = steps[stepIndex].querySelectorAll("input[required], select[required]");
+    let isValid = true;
 
-        inputs.forEach(input => {
-            if (!input.value.trim()) {
-                input.classList.add("error");
-		    alert("Please fill in all required fields");
-                isValid = false;
-            } else {
-                input.classList.remove("error");
-            }
-        });
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            input.classList.add("error");
+            isValid = false;
+        } else {
+            input.classList.remove("error");
+        }
+    });
 
-        return isValid;
+    if (!isValid) {
+        alert("Please fill in required fields");
     }
+
+    return isValid;
+}
+
 
     // Function to validate Date of Birth
     function validateDOB() {
