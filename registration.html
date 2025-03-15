@@ -617,6 +617,7 @@ body {
         inputs.forEach(input => {
             if (!input.value.trim()) {
                 input.classList.add("error");
+		    alert("Please fill in all required fields");
                 isValid = false;
             } else {
                 input.classList.remove("error");
@@ -632,7 +633,7 @@ body {
         const today = new Date();
 
         if (dobValue > today) {
-            alert("Date of Birth cannot be in the future!");
+            alert("Invaild Date of Birth");
             dobInput.value = "";
             return false;
         }
