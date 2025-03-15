@@ -111,7 +111,14 @@ backdrop-filter: blur(10px);
 		font-family: Raleway;
         }
 
+::placeholder {
+  color: black;
+  
+}
 
+input:focus::placeholder {
+  color: transparent; 
+}
         .error {
             border: 2px solid red !important;
         }
@@ -262,7 +269,7 @@ font-family: Raleway;
 /* Styled select dropdown */
 .custom-select select {
     width: 100%;
-    padding: 12px 45px; /* Adjusted padding for icon */
+    padding: 12px 45px; 
     font-size: 16px;
     border-radius: 8px;
     border: 1px solid #ccc;
@@ -278,7 +285,7 @@ font-family: Raleway;
 
 /* Custom dropdown arrow */
 .custom-select::after {
-    content: "\25BC"; /* Unicode for down arrow */
+    content: "\25BC"; 
     font-size: 14px;
     color: white;
     position: absolute;
@@ -337,7 +344,7 @@ body {
 
 
 @media (max-width: 768px) {
-  /* Adjust Navbar: smaller padding and font-size */
+  
   .navbar {
     padding: 5px 10px;
   }
@@ -348,42 +355,42 @@ body {
     font-size: 12px;
   }
   
-  /* Container Adjustments: full width and covers the remaining screen below navbar */
+  
   .container {
     width: 100%;
     max-width: 100%;
-    margin: 80px auto 0; /* Ensure container starts below the fixed navbar */
+    margin: 80px auto 0; 
     padding: 15px;
-    min-height: calc(100vh - 80px); /* Adjust 80px if your navbar height is different */
+    min-height: calc(100vh - 80px); 
     box-sizing: border-box;
   }
   
-  /* Reduce text sizes within the container */
+  
   .title, h2, p {
     font-size: 14px;
   }
   
-  /* Input Fields: full width with increased left padding so icons don't overlap text */
+  
   input[type="text"],
   input[type="date"],
   input[type="email"],
   select,
   textarea {
     width: 100%;
-    padding: 8px 10px 8px 40px; /* Left padding increased to 40px */
+    padding: 8px 10px 8px 40px; 
     margin: 5px 0 10px 0;
     font-size: 14px;
     box-sizing: border-box;
   }
   
-  /* Buttons: reduced size for mobile */
+  
   button {
     width: 100%;
     padding: 6px 8px;
     font-size: 14px;
   }
   
-  /* Progress Bar Steps: smaller circles */
+ 
   .progress-bar .step {
     width: 18px;
     height: 18px;
