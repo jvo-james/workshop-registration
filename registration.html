@@ -336,74 +336,64 @@ body {
 }
 
 @media (max-width: 768px) {
-  /* Adjust container to cover most of the screen and sit below the navbar */
-  .container {
-    width: 95%;
-    margin: 120px auto 40px; /* Increased top margin for the fixed navbar */
-    padding: 20px;
-  }
-  
-  /* Keep navbar horizontal and reduce font sizes */
+  /* Navbar Adjustments: smaller padding and font-size */
   .navbar {
-    padding: 10px 20px;
+    padding: 10px 10px;
   }
-  .navbar ul {
-    flex-direction: row;
-    justify-content: space-around;
+  .navbar .nav-links li {
+    margin: 0 8px;
   }
   .navbar a {
     font-size: 14px;
   }
-  
-  /* Adjust input fields so they don’t overflow or get overlapped by icons */
+
+  /* Container Adjustments: cover most of the screen */
+  .container {
+    width: 100%;
+    margin: 80px auto 20px; /* Enough top margin to appear below fixed navbar */
+    padding: 15px;
+    box-sizing: border-box; /* Ensures padding doesn't cause overflow */
+  }
+
+  /* Reduce text sizes within the container */
+  .title, h2, p {
+    font-size: 16px;
+  }
+
+  /* Input Fields: full width with increased left padding for icons */
   input[type="text"],
   input[type="date"],
   input[type="email"],
   select,
   textarea {
     width: 100%;
-    padding: 10px 15px;  /* Use a moderate padding on all sides */
+    padding: 10px 15px 10px 45px; /* Left padding increased so text doesn't cover the icon */
     margin: 5px 0 15px 0;
     font-size: 16px;
+    box-sizing: border-box;
   }
-  
-  /* Adjust custom select: ensure its width and padding fit within the container */
-  .custom-select {
-    width: 100%;
-  }
-  .custom-select select {
-    padding: 12px 15px;
-    font-size: 16px;
-  }
+
+  /* Custom Select icon adjustments */
   .custom-select i {
     left: 10px;
     font-size: 16px;
   }
-  
-  /* Buttons: Reduce size for mobile touch */
+
+  /* Button Adjustments: smaller size for mobile */
   button {
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
-  }
-  
-  /* Progress bar adjustments */
-  .progress-bar {
-    margin-bottom: 15px;
-  }
-  .step {
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
+    padding: 8px 12px;
     font-size: 14px;
   }
-  
-  /* Footer text size */
-  .footer {
-    font-size: 18px;
+
+  /* Progress Bar Steps: smaller circles */
+  .progress-bar .step {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
   }
 }
-
 
 
 </style>
