@@ -337,62 +337,330 @@ body {
 
 
 
-@media (max-width: 768px) {
-  /* Make the container cover most of the phone screen */
-  .container {
-    width: 100%;             /* Nearly full width */
-    margin: 20px auto;      /* Reduced margin for mobile */
-    padding: 20px;          /* Reduced padding for mobile */
-  }
-  
-  /* Keep the navbar horizontal on mobile */
-  .navbar {
-    flex-direction: row;    /* Force horizontal layout */
-    padding: 10px 20px;
-  }
-  
-  .navbar .nav-links {
-    flex-direction: row;    /* Ensure links stay in a row */
-    justify-content: space-around;
-    width: 100%;
-  }
-  
-  .navbar .nav-links li {
-    margin: 0 10px;
-  }
-  
-  /* Improve the look of input fields */
-  input[type="text"],
-  input[type="date"],
-  input[type="email"],
-  select,
-  textarea {
-    width: 100%;            /* Full width within the container */
-    padding: 10px 15px;      /* Adjusted padding */
-    margin: 5px 0 15px 0;    /* Reduced margin */
-    font-size: 16px;        /* Slightly smaller font size for mobile */
-  }
-  
-  /* Button adjustments for better touch experience */
-  button {
-    width: 100%;
-    padding: 12px;
-    font-size: 18px;
-  }
-  
-  /* Progress Bar Adjustments */
-  .progress-bar {
-    margin-bottom: 15px;
-  }
-  
-  .step {
-    width: 25px;
-    height: 25px;
-    line-height: 25px;
-    font-size: 14px;
-  }
+body {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('robot4.jpg');
+    background-size: cover;
+    background-position: center;
+    font-size: 25px;
+    color: white;
 }
 
+.navbar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 95%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;  /* reduced padding */
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff9800;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin: 0 10px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;  /* reduced font size */
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ff9800;
+}
+
+/* Container: now covers most of the screen, and is pushed below the navbar */
+.container {
+    position: relative;
+    z-index: 1;
+    border: 2px solid white;
+    background: rgba(255, 255, 255, 0.1);
+    max-width: 90%;
+    margin: 120px auto 50px;  /* margin-top increased to allow space for fixed navbar */
+    padding: 30px;
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+/* Title */
+.title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #ff9800;
+}
+
+/* Progress Bar */
+.progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    counter-reset: step;
+}
+
+.step {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: #555;
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.step.active {
+    background: #ff9800;
+}
+
+h2 {
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+.error {
+    border: 2px solid red !important;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Buttons: Reduced size */
+button {
+    padding: 8px 12px;
+    border: none;
+    background: #6a11cb;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #2575fc;
+    transform: scale(1.05);
+}
+
+/* Form Steps */
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+
+.terms-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.terms-container input[type="checkbox"] {
+    margin: 0;
+    width: 16px;
+    height: 16px;
+}
+
+.terms-container label {
+    margin-left: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Input Group Styling */
+.input-group {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+/* Icons: Positioned correctly */
+.input-group i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6a11cb;
+    font-size: 16px;
+}
+
+/* Input Fields: Increase left padding so text doesn’t overlap the icon */
+input[type="text"],
+input[type="date"],
+input[type="email"] {
+    width: 85%;
+    height: 30px;
+    padding: 10px 40px 10px 50px; /* increased left padding to 50px */
+    border-radius: 5px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #a2a2a2;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Focus Effect for Inputs */
+.input-group input:focus {
+    border: 2px solid #6a11cb;
+    outline: none;
+}
+
+/* Input Field Glow */
+input, textarea {
+    transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Checkbox Smooth Animation */
+.terms-container input[type="checkbox"] {
+    transition: all 0.2s ease-in-out;
+}
+
+.terms-container input[type="checkbox"]:checked {
+    transform: scale(1.2);
+}
+
+/* Custom Select Styling */
+.custom-select {
+    position: relative;
+    width: 96%;
+    font-family: 'Raleway', sans-serif;
+}
+
+.custom-select i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4A90E2;
+    font-size: 18px;
+    z-index: 10;
+}
+
+.custom-select select {
+    width: 100%;
+    padding: 12px 45px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background: #1c1c1c;
+    color: white;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.custom-select::after {
+    content: "\25BC";
+    font-size: 14px;
+    color: white;
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.custom-select select option {
+    background: #1c1c1c;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+}
+
+.custom-select select:hover {
+    border-color: #4A90E2;
+}
+
+.custom-select select:focus {
+    border-color: #4A90E2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+
+#multiStepForm {
+    font-family: 'Raleway', sans-serif;
+}
+
+/* Footer */
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 50px;
+    font-size: 25px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        margin: 80px auto 40px;
+        width: 95%;
+        padding: 20px;
+    }
+    .navbar ul {
+        flex-direction: row;
+        text-align: center;
+    }
+    .navbar ul li {
+        margin: 0 8px;
+    }
+    .navbar a {
+        font-size: 14px;
+    }
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px 45px 10px 55px; /* increase left padding further on small screens */
+        font-size: 16px;
+    }
+    button {
+        padding: 10px;
+        font-size: 16px;
+    }
+    .progress-bar {
+        margin-bottom: 15px;
+    }
+    .step {
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        font-size: 14px;
+    }
+    .footer {
+        font-size: 18px;
+    }
+}
 
 </style>
 </head>
