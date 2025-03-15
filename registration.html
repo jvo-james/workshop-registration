@@ -335,65 +335,63 @@ body {
     color: #e68900; /* Darker shade on hover */
 }
 
+
 @media (max-width: 768px) {
-  /* Navbar Adjustments: smaller padding and font-size */
+  /* Adjust Navbar: smaller padding and font-size */
   .navbar {
-    padding: 10px 10px;
+    padding: 5px 10px;
   }
   .navbar .nav-links li {
     margin: 0 8px;
   }
   .navbar a {
-    font-size: 14px;
+    font-size: 12px;
   }
-
-  /* Container Adjustments: cover most of the screen */
+  
+  /* Container Adjustments: full width and covers the remaining screen below navbar */
   .container {
     width: 100%;
-    margin: 80px auto 20px; /* Enough top margin to appear below fixed navbar */
+    max-width: 100%;
+    margin: 80px auto 0; /* Ensure container starts below the fixed navbar */
     padding: 15px;
-    box-sizing: border-box; /* Ensures padding doesn't cause overflow */
+    min-height: calc(100vh - 80px); /* Adjust 80px if your navbar height is different */
+    box-sizing: border-box;
   }
-
+  
   /* Reduce text sizes within the container */
   .title, h2, p {
-    font-size: 16px;
+    font-size: 14px;
   }
-
-  /* Input Fields: full width with increased left padding for icons */
+  
+  /* Input Fields: full width with increased left padding so icons don't overlap text */
   input[type="text"],
   input[type="date"],
   input[type="email"],
   select,
   textarea {
     width: 100%;
-    padding: 10px 15px 10px 45px; /* Left padding increased so text doesn't cover the icon */
-    margin: 5px 0 15px 0;
-    font-size: 16px;
+    padding: 8px 10px 8px 40px; /* Left padding increased to 40px */
+    margin: 5px 0 10px 0;
+    font-size: 14px;
     box-sizing: border-box;
   }
-
-  /* Custom Select icon adjustments */
-  .custom-select i {
-    left: 10px;
-    font-size: 16px;
-  }
-
-  /* Button Adjustments: smaller size for mobile */
+  
+  /* Buttons: reduced size for mobile */
   button {
     width: 100%;
-    padding: 8px 12px;
+    padding: 6px 8px;
     font-size: 14px;
   }
-
+  
   /* Progress Bar Steps: smaller circles */
   .progress-bar .step {
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    font-size: 10px;
   }
 }
+
 
 
 </style>
