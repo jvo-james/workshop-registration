@@ -328,20 +328,78 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .container {
-        margin: 100px auto 60px; /* Adjusted to prevent footer overlap */
-        width: 90%;
-    }
-
-    .navbar ul {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .navbar ul li {
-        margin: 10px 0;
-    }
+  /* Reduce container width, adjust margin and padding */
+  .container {
+    width: 95%;
+    margin: 80px auto 40px;
+    padding: 20px;
+  }
+  
+  /* Lower base font-size for better readability */
+  body {
+    font-size: 18px;
+  }
+  
+  /* Adjust headings */
+  h2 {
+    font-size: 1.8em;
+  }
+  
+  /* Navigation Bar adjustments */
+  .navbar {
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+  .navbar ul {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+  .navbar ul li {
+    margin: 5px 0;
+  }
+  
+  /* Inputs and select elements: make them full width */
+  input[type=text],
+  input[type=date],
+  input[type=email],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    font-size: 16px;
+  }
+  
+  /* Custom select wrapper */
+  .custom-select {
+    width: 100%;
+  }
+  
+  /* Buttons: full width and slightly larger text */
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+  }
+  
+  /* Progress Bar adjustments */
+  .progress-bar {
+    margin-bottom: 15px;
+  }
+  .step {
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 14px;
+  }
+  
+  /* Footer font size */
+  .footer {
+    font-size: 18px;
+  }
 }
+
 </style>
 </head>
 <body> 
