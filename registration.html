@@ -150,8 +150,18 @@ input:focus::placeholder {
     box-shadow: 0px 0px 10px rgba(255, 152, 0, 0.7);
     transition: 0.3s ease-in-out;
 }
-   .error {
-            border: 2px solid red !important;
+ @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+.error {
+    border: 2px solid red !important;
+    animation: shake 0.3s ease-in-out;
+}
+
         }
 
         .btn-container {
@@ -167,15 +177,25 @@ input:focus::placeholder {
             cursor: pointer;
             border-radius: 5px;
 		font-family: Raleway;
-		 transition: transform 0.3s ease, background 0.3s ease;
+		transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
 }
         }
 
         button:hover {
 		transform: scale(1.05);
-            background: #2575fc;
+    background: #ff9800;
+    box-shadow: 0px 0px 20px rgba(255, 152, 0, 0.7);
         }
+button:active {
+    animation: bounce 0.3s ease-in-out;
+}
 
+@keyframes bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
         .form-step {
             display: none;
 		opacity: 0;
@@ -262,32 +282,69 @@ font-family: Raleway;
 
 /* 🌟 Focus Effect */
 .input-group input:focus {
-    border: 2px solid #6a11cb;
-    outline: none;
+   padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
 }
-/* Smooth Button Hover */
-button {
-    transition: background 0.3s ease, transform 0.2s ease;
-font-family: Raleway;
+
+.input-group input:focus {
+    border-color: #ff9800;
+    box-shadow: 0px 0px 15px rgba(255, 152, 0, 0.7);
 }
-button:hover {
-    background: #2575fc;
-    transform: scale(1.1);
+
+.input-group label {
+    position: absolute;
+    left: 15px;
+    top: 12px;
+    font-size: 16px;
+    color: #aaa;
+    transition: 0.3s ease-in-out;
 }
+
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -10px;
+    font-size: 12px;
+    color: #ff9800;
+}
+
 
 /* Input Field Glow */
 input, textarea {
     transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
+.step.active {
+    background: #ff9800;
+    animation: progressGrow 0.5s ease-in-out;
+}
 
-/* Checkbox Smooth Animation */
+@keyframes progressGrow {
+    0% {
+        background: #555;
+        transform: scale(0.8);
+    }
+    100% {
+        background: #ff9800;
+        transform: scale(1);
+    }
+}
+
 .terms-container input[type="checkbox"] {
     transition: all 0.2s ease-in-out;
 }
 
 .terms-container input[type="checkbox"]:checked {
     transform: scale(1.2);
+    animation: checkMark 0.3s ease-in-out;
 }
+
+@keyframes checkMark {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+    100% { transform: scale(1.2); }
+}
+
 .custom-select {
     position: relative;
     width: 96%;
@@ -357,7 +414,15 @@ font-family: Raleway; }
 body {
     font-family: 'Raleway', sans-serif;
 }
+.container:hover {
+    transform: scale(1.01);
+    transition: 0.5s ease-in-out;
+}
 
+button:hover {
+    transform: scale(1.08);
+    transition: 0.2s ease-in-out;
+}
 /* Footer Styles */
 .footer {
     background: #222; /* Dark background */
@@ -622,7 +687,7 @@ body {
         <div class="form-step">
 <h2>Workshop Information</h2>
 
-<!-- Workshop Choice -->            <label>Workshop Choice: <label style="font-size: 10px"><a href="https://jvo-james.github.io/skillforg-website/intro.html">Learn More</a></label></label>
+<!-- Workshop Choice -->            <label>Workshop Choice: <label style="font-size: 20px; color: white;"><a href="https://jvo-james.github.io/skillforg-website/intro.html">Learn More</a></label></label>
 
 <div class="custom-select">
     <i class="fa fa-tools"></i>
@@ -727,7 +792,13 @@ function validateStep(stepIndex) {
             input.classList.remove("error");
         }
     });
-
+document.querySelectorAll("input, select").forEach(input => {
+    input.addEventListener("input", function () {
+        if (this.value.trim() !== "") {
+            this.classList.remove("error");
+        }
+    });
+});
     if (!isValid) {
         alert("Please fill in required fields");
     }
