@@ -435,6 +435,17 @@ button:hover {
     bottom: 0;
     width: 100%;
 }
+.link a {
+  color: #ff9800; /* Highlight color */
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.link a:hover {
+    color: #e68900; /* Darker shade on hover */
+}
+	
 
 .footer a {
     color: #ff9800; /* Highlight color */
@@ -688,7 +699,7 @@ button:hover {
         <div class="form-step">
 <h2>Workshop Information</h2>
 
-<!-- Workshop Choice -->            <label>Workshop Choice: <label style="font-size: 20px; color: white;"><a href="https://jvo-james.github.io/skillforg-website/intro.html">Learn More</a></label></label>
+<!-- Workshop Choice -->            <label class="link">Workshop Choice: <label style="font-size: 20px; color: white;"><a href="https://jvo-james.github.io/skillforg-website/intro.html">Learn More</a></label></label>
 
 <div class="custom-select">
     <i class="fa fa-tools"></i>
@@ -729,7 +740,7 @@ button:hover {
 <!-- Terms and Conditions -->
 <div class="terms-container">
     <input type="checkbox" name="terms" id="termsCheckbox" required>
-    <label for="termsCheckbox">
+    <label for="termsCheckbox" class="link">
         By registering, you agree to our <a href="https://jvo-james.github.io/skillforg-website/terms.html" target="_blank">Terms & Conditions</a>.
     </label>
 </div>
