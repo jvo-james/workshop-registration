@@ -312,18 +312,29 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
-/* Footer */
+/* Footer Styles */
 .footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    background: #222;
+    background: #222; /* Dark background */
     color: white;
     text-align: center;
     padding: 15px 0;
-    margin-top: 50px;
-   font-size: 25px;
+    font-size: 16px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
+
+.footer a {
+    color: #ff9800; /* Highlight color */
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer a:hover {
+    color: #e68900; /* Darker shade on hover */
+}
+
 
 
 /* Responsive */
@@ -638,10 +649,17 @@ body {
 
     </form>
 </div>
-<!-- Footer -->
-    <footer>
-                          <p style="font-size: 25px"> &copy; 2025 Skillforg. All Rights Reserved.</p>
-    </footer>
+
+   <!-- Footer Section -->
+<footer class="footer">
+    <p>&copy; 2025 SkillForge. All Rights Reserved.</p>
+    <p>
+        <a href="privacy-policy.html">Privacy Policy</a> | 
+        <a href="terms.html">Terms of Use</a> |  
+        <a href="contact.html">Contact Us</a>
+    </p>
+</footer>
+
 
 
 <script>
