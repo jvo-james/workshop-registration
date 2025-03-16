@@ -592,7 +592,7 @@ button:hover {
 
 <div class="input-group">
     <i class="fa fa-envelope"></i>
-    <input type="email" id="email" placeholder="example@domain.com" required>
+    <input type="email" name="personal_email" id="email" placeholder="example@domain.com" required>
 </div>
 
 <!-- Phone Number -->            <label>Personal Phone Number:</label>
@@ -833,6 +833,108 @@ document.querySelectorAll("input, select").forEach(input => {
     function scrollToTop() {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }
+document.addEventListener("DOMContentLoaded", function () {
+    const steps = document.querySelectorAll(".form-step");
+    const nextButtons = document.querySelectorAll(".next");
+    const prevButtons = document.querySelectorAll(".prev");
+    const form = document.getElementById("multiStepForm");
+
+    let currentStep = 0;
+
+    // Function to validate required fields
+    function validateStep(stepIndex) {
+        const inputs = steps[stepIndex].querySelectorAll("input[required], select[required]");
+        let isValid = true;
+
+        inputs.forEach(input => {
+            const fieldType = input.getAttribute("type");
+            const value = input.value.trim();
+            const id = input.id;
+
+            // Validation Rules
+            if (!value) {
+                alert(`❌ ${input.placeholder || id} is required.`);
+                input.classList.add("error");
+                isValid = false;
+            } 
+            // Name Fields (Only Letters)
+            else if ((id === "firstName" || id === "middleName" || id === "lastName") && !/^[A-Za-z\s]+$/.test(value)) {
+                alert(`❌ ${id.replace("_", " ")} must contain only letters.`);
+                input.classList.add("error");
+                isValid = false;
+            } 
+            // Nationality (Only Letters)
+            else if (id === "nationality" && !/^[A-Za-z\s]+$/.test(value)) {
+                alert("❌ Nationality must contain only letters.");
+                input.classList.add("error");
+                isValid = false;
+            } 
+            // Email (Valid Email Format)
+            else if (fieldType === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                alert("❌ Please enter a valid email address.");
+                input.classList.add("error");
+                isValid = false;
+            } 
+            // Phone (Only 10-15 Digits)
+            else if (id === "phone" && !/^\d{10,15}$/.test(value)) {
+                alert("❌ Phone number must be 10-15 digits.");
+                input.classList.add("error");
+                isValid = false;
+            } 
+            // Student ID (Only Numbers)
+            else if (id === "student_id" && !/^\d+$/.test(value)) {
+                alert("❌ Student ID must contain only numbers.");
+                input.classList.add("error");
+                isValid = false;
+            } 
+            // Field of Study (Only Letters)
+            else if (id === "field_of_study" && !/^[A-Za-z\s]+$/.test(value)) {
+                alert("❌ Field of Study must contain only letters.");
+                input.classList.add("error");
+                isValid = false;
+            } 
+            // CWA (Must be between 0-100 or empty)
+            else if (id === "cwa" && value !== "" && (!/^\d+(\.\d{1,2})?$/.test(value) || value < 0 || value > 100)) {
+                alert("❌ CWA must be a number between 0 and 100.");
+                input.classList.add("error");
+                isValid = false;
+            } 
+            else {
+                input.classList.remove("error");
+            }
+        });
+
+        return isValid;
+    }
+
+    // Next Button Event
+    nextButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            if (!validateStep(currentStep)) return;
+
+            steps[currentStep].classList.remove("active");
+            currentStep++;
+            steps[currentStep].classList.add("active");
+        });
+    });
+
+    // Previous Button Event
+    prevButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            steps[currentStep].classList.remove("active");
+            currentStep--;
+            steps[currentStep].classList.add("active");
+        });
+    });
+
+    // Form Submission Validation
+    form.addEventListener("submit", function (event) {
+        if (!validateStep(currentStep)) {
+            event.preventDefault(); // Stop form submission
+            alert("❌ Please fix the errors before submitting.");
+        }
+    });
+});
 
     // Next Button Event
     nextButtons.forEach(button => {
