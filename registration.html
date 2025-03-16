@@ -632,7 +632,7 @@ button:hover {
 
 <div class="input-group">
     <i class="fa fa-id-badge"></i>
-    <input type="text" name="student_id" placeholder="eg. 21342803" required>
+    <input type="text" id="student_id" name="student_id" placeholder="eg. 21342803" required>
 </div>
 
 <!-- Academic Department -->            <label>Academic Department:</label>
@@ -653,7 +653,7 @@ button:hover {
 
 <div class="input-group">
     <i class="fa fa-book"></i>
-    <input type="text" name="field_of_study" placeholder="eg. Computer Science, Chemical Engineering, etc." required>
+    <input type="text" id="field_of_study" name="field_of_study" placeholder="eg. Computer Science, Chemical Engineering, etc." required>
 </div>
 
 <!-- Current Level -->            <label>Current Level:</label>
@@ -682,7 +682,7 @@ button:hover {
 
 <div class="input-group">
     <i class="fa fa-chart-line"></i>
-    <input type="text" name="cwa" placeholder="Optional">
+    <input type="text" id="cwa" name="cwa" placeholder="Optional">
 </div>
 
 <div class="btn-container">
@@ -766,7 +766,8 @@ button:hover {
 
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+
+	document.addEventListener("DOMContentLoaded", function () {
     // Initialize EmailJS
     emailjs.init("mRkmngSQa0dzBfRS8"); // Replace with your EmailJS Public Key
 
@@ -774,9 +775,8 @@ button:hover {
     const progressSteps = document.querySelectorAll(".progress-bar .step");
     const nextButtons = document.querySelectorAll(".next");
     const prevButtons = document.querySelectorAll(".prev");
-    const submitButton = document.querySelector('button[type="submit"]');
-    const termsCheckbox = document.getElementById("termsCheckbox");
     const form = document.getElementById("multiStepForm");
+    const termsCheckbox = document.getElementById("termsCheckbox");
     const dobInput = document.getElementById("dob");
 
     let currentStep = 0;
@@ -788,166 +788,110 @@ button:hover {
         });
     }
 
-   // Function to validate required fields and alert if any are missing
-function validateStep(stepIndex) {
-    const inputs = steps[stepIndex].querySelectorAll("input[required], select[required]");
-    let isValid = true;
-
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            input.classList.add("error");
-            isValid = false;
-        } else {
-            input.classList.remove("error");
-        }
-    });
-document.querySelectorAll("input, select").forEach(input => {
-    input.addEventListener("input", function () {
-        if (this.value.trim() !== "") {
-            this.classList.remove("error");
-        }
-    });
-});
-    if (!isValid) {
-        alert("Please fill in required fields");
-    }
-
-    return isValid;
-}
-
-
-    // Function to validate Date of Birth
-    function validateDOB() {
-        const dobValue = new Date(dobInput.value);
-        const today = new Date();
-
-        if (dobValue > today) {
-            alert("Invaild Date of Birth");
-            dobInput.value = "";
-            return false;
-        }
-        return true;
-    }
-
-    // Function to scroll to top smoothly
-    function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-document.addEventListener("DOMContentLoaded", function () {
-    const steps = document.querySelectorAll(".form-step");
-    const nextButtons = document.querySelectorAll(".next");
-    const prevButtons = document.querySelectorAll(".prev");
-    const form = document.getElementById("multiStepForm");
-
-    let currentStep = 0;
-
     // Function to validate required fields
     function validateStep(stepIndex) {
         const inputs = steps[stepIndex].querySelectorAll("input[required], select[required]");
         let isValid = true;
+        let errorMessages = [];
 
         inputs.forEach(input => {
-            const fieldType = input.getAttribute("type");
             const value = input.value.trim();
             const id = input.id;
 
-            // Validation Rules
             if (!value) {
-                alert(`❌ ${input.placeholder || id} is required.`);
-                input.classList.add("error");
+                showError(input, `❌ ${id.replace("_", " ")} is required.`);
+                errorMessages.push(`${id.replace("_", " ")} is required.`);
                 isValid = false;
             } 
-            // Name Fields (Only Letters)
-            else if ((id === "firstName" || id === "middleName" || id === "lastName") && !/^[A-Za-z\s]+$/.test(value)) {
-                alert(`❌ ${id.replace("_", " ")} must contain only letters.`);
-                input.classList.add("error");
+            else if (["firstName", "middleName", "lastName"].includes(id) && !/^[A-Za-z\s]+$/.test(value)) {
+                showError(input, `❌ ${id.replace("_", " ")} must contain only letters.`);
+                errorMessages.push(`${id.replace("_", " ")} must contain only letters.`);
                 isValid = false;
             } 
-            // Nationality (Only Letters)
-            else if (id === "nationality" && !/^[A-Za-z\s]+$/.test(value)) {
-                alert("❌ Nationality must contain only letters.");
-                input.classList.add("error");
+            else if (id === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                showError(input, "❌ Please enter a valid email address.");
+                errorMessages.push("Invalid email format.");
                 isValid = false;
             } 
-            // Email (Valid Email Format)
-            else if (fieldType === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
-                alert("❌ Please enter a valid email address.");
-                input.classList.add("error");
-                isValid = false;
-            } 
-            // Phone (Only 10-15 Digits)
             else if (id === "phone" && !/^\d{10,15}$/.test(value)) {
-                alert("❌ Phone number must be 10-15 digits.");
-                input.classList.add("error");
+                showError(input, "❌ Phone number must be 10-15 digits.");
+                errorMessages.push("Phone number must be 10-15 digits.");
                 isValid = false;
             } 
-            // Student ID (Only Numbers)
             else if (id === "student_id" && !/^\d+$/.test(value)) {
-                alert("❌ Student ID must contain only numbers.");
-                input.classList.add("error");
+                showError(input, "❌ Student ID must contain only numbers.");
+                errorMessages.push("Student ID must contain only numbers.");
                 isValid = false;
             } 
-            // Field of Study (Only Letters)
             else if (id === "field_of_study" && !/^[A-Za-z\s]+$/.test(value)) {
-                alert("❌ Field of Study must contain only letters.");
-                input.classList.add("error");
+                showError(input, "❌ Field of Study must contain only letters.");
+                errorMessages.push("Field of Study must contain only letters.");
                 isValid = false;
             } 
-            // CWA (Must be between 0-100 or empty)
             else if (id === "cwa" && value !== "" && (!/^\d+(\.\d{1,2})?$/.test(value) || value < 0 || value > 100)) {
-                alert("❌ CWA must be a number between 0 and 100.");
-                input.classList.add("error");
+                showError(input, "❌ CWA must be a number between 0 and 100.");
+                errorMessages.push("CWA must be between 0 and 100.");
                 isValid = false;
-            } 
+            }
+            else if (id === "dob") {
+                const dobValue = new Date(value);
+                const today = new Date();
+                if (dobValue > today) {
+                    showError(input, "❌ Enter a valid Date of Birth.");
+                    errorMessages.push("Date of Birth cannot be in the future.");
+                    isValid = false;
+                } else {
+                    removeError(input);
+                }
+            }  
             else {
-                input.classList.remove("error");
+                removeError(input);
             }
         });
 
-        return isValid;
+        return { isValid, errorMessages };
     }
 
-    // Next Button Event
-    nextButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            if (!validateStep(currentStep)) return;
+    // Show Error Message
+    function showError(input, message) {
+        input.classList.add("error");
+        input.nextElementSibling && input.nextElementSibling.classList.contains("error-message")
+            ? (input.nextElementSibling.textContent = message)
+            : createErrorMessage(input, message);
+    }
 
-            steps[currentStep].classList.remove("active");
-            currentStep++;
-            steps[currentStep].classList.add("active");
-        });
-    });
-
-    // Previous Button Event
-    prevButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            steps[currentStep].classList.remove("active");
-            currentStep--;
-            steps[currentStep].classList.add("active");
-        });
-    });
-
-    // Form Submission Validation
-    form.addEventListener("submit", function (event) {
-        if (!validateStep(currentStep)) {
-            event.preventDefault(); // Stop form submission
-            alert("❌ Please fix the errors before submitting.");
+    // Remove Error Message
+    function removeError(input) {
+        input.classList.remove("error");
+        if (input.nextElementSibling && input.nextElementSibling.classList.contains("error-message")) {
+            input.nextElementSibling.remove();
         }
-    });
-});
+    }
+
+    // Create Error Message Below Input
+    function createErrorMessage(input, message) {
+        const errorMsg = document.createElement("div");
+        errorMsg.classList.add("error-message");
+        errorMsg.style.color = "red";
+        errorMsg.style.fontSize = "14px";
+        errorMsg.style.marginTop = "5px";
+        errorMsg.textContent = message;
+        input.parentNode.appendChild(errorMsg);
+    }
 
     // Next Button Event
     nextButtons.forEach(button => {
         button.addEventListener("click", () => {
-            if (!validateStep(currentStep)) return;
+            const { isValid, errorMessages } = validateStep(currentStep);
 
-            if (dobInput && currentStep === 0 && !validateDOB()) return;
+            if (!isValid) {
+                alert("⚠️ Please fix the following errors before proceeding:\n\n" + errorMessages.join("\n"));
+                return;
+            }
 
             steps[currentStep].classList.remove("active");
             currentStep++;
             steps[currentStep].classList.add("active");
-            updateProgress();
-            scrollToTop();
         });
     });
 
@@ -957,72 +901,55 @@ document.addEventListener("DOMContentLoaded", function () {
             steps[currentStep].classList.remove("active");
             currentStep--;
             steps[currentStep].classList.add("active");
-            updateProgress();
-            scrollToTop();
         });
     });
 
-document.getElementById("multiStepForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevents default submission to handle both EmailJS & FormSubmit
-
-    if (!validateStep(currentStep)) {
-        alert("Please fill in all required fields before submitting.");
-        return;
-    }
-
-    if (!document.getElementById("termsCheckbox").checked) {
-        alert("You must agree to the Terms & Conditions before submitting.");
-        return;
-    }
-
-    // Get user input values
-    let userName = document.getElementById("firstName").value + " " + document.getElementById("lastName").value;
-    let userEmail = document.getElementById("email").value;
-
-    // Send email via EmailJS
-    emailjs.send("service_cd8p711", "template_eg12xwg", {
-        user_name: userName,
-        user_email: userEmail
-    }, "mRkmngSQa0dzBfRS8")
-    .then(() => {
-        // Once email is sent, proceed with form submission
-        document.getElementById("multiStepForm").submit();
-    })
-    .catch((error) => {
-        console.error("EmailJS Error:", error);
-        alert("Error sending confirmation email. Please try again.");
+    // Live Validation (Removes Error Messages on Typing)
+    document.querySelectorAll("input, select").forEach(input => {
+        input.addEventListener("input", () => {
+            removeError(input);
+        });
     });
-});
-    // Handle Form Submission
+
+    // Form Submission Handling
     form.addEventListener("submit", function (event) {
         event.preventDefault(); // Stop default form submission
 
-        if (!validateStep(currentStep)) {
-            alert("Please fill in all required fields before submitting.");
+        const { isValid, errorMessages } = validateStep(currentStep);
+
+        if (!isValid) {
+            alert("❌ Please fix the errors before submitting:\n\n" + errorMessages.join("\n"));
             return;
         }
 
         if (!termsCheckbox.checked) {
-            alert("You must agree to the Terms & Conditions before submitting.");
+            alert("❌ You must agree to the Terms & Conditions before submitting.");
             return;
         }
 
-        // Collect name & email
-        let userName = document.getElementById("firstName").value.trim();
-        let userEmail = document.getElementById("email").value.trim();
+        // Collect user details
+        let userName = document.getElementById("firstName").value + " " + document.getElementById("lastName").value;
+        let userEmail = document.getElementById("email").value;
 
-        // Ensure both are filled before sending email
-        if (userName && userEmail) {
-            sendConfirmationEmail(userName, userEmail);
-        } else {
-            alert("Please fill in all required fields before submitting.");
-        }
+        // Send email via EmailJS
+        emailjs.send("service_cd8p711", "template_eg12xwg", {
+            user_name: userName,
+            user_email: userEmail
+        }, "mRkmngSQa0dzBfRS8")
+        .then(() => {
+            // Once email is sent, submit form to FormSubmit
+            form.submit();
+        })
+        .catch((error) => {
+            console.error("❌ EmailJS Error:", error);
+            alert("❌ Error sending confirmation email. Please try again.");
+        });
     });
 
-    // Auto-scroll to top on refresh
-    scrollToTop();
+    // Update Progress Bar & Auto-scroll on Refresh
     updateProgress();
 });
+
 
 </script>
 
